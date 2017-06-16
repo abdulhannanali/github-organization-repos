@@ -1,0 +1,12 @@
+.OwnerInfo {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.OwnerInfo img {
+  width: 72px;
+}
+
+.OwnerInfo a {
+  text-decoration: none;
+}

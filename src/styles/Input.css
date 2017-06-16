@@ -1,0 +1,9 @@
+.Input {
+  color: black;
+  border: none;
+  text-align: center;
+  padding: 40px;
+  font-size: 34px;
+  font-family: 'Roboto Mono', Arial, Helvetica, serif;
+  box-shadow: none;
+}

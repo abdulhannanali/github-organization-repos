@@ -1,0 +1,21 @@
+.RepoCard {
+  padding: 10px;
+  box-shadow: 8px 8px 8px #aaa;
+  padding: 10px;
+  border-radius: none;
+}
+
+.RepoCard--stars {
+  color: #0366d6;
+}
+
+.RepoCard--footer {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.DevIcon {
+  text-align: center;
+  font-size: 40px;
+  padding-top: 25px;
+}
