@@ -15,6 +15,15 @@ module.exports = Merge(CommonConfig, {
     hot: true,
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }
+    ]
+  },
+
   output: {
     // Hash is required for JavaScript files using Hot Module Replacement
     filename: '[name].[hash].js',

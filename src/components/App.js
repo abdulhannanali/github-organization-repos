@@ -20,7 +20,7 @@ class App extends Component {
     this.setState({ 
       loading: true, login: '', loaded: false, reposList: [], error: false, 
     });
-    return fetchOrganizationRepos(searchTerm, 10)
+    return fetchOrganizationRepos(searchTerm, 100)
       .then(repos => {
         if (!repos) { return; }
         const parsedRepos = repos.map(repo => {

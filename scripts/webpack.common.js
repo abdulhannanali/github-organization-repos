@@ -45,13 +45,6 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
-      {
         test: /\.(png|gif|jpg)/,
         use: [
           'file-loader',
@@ -73,12 +66,13 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'manifest'],
+      name: ['vendor', 'manifest'].reverse(),
       minChunks: Infinity,
     }),
     new HtmlWebpackPlugin({
       title: 'Github Organization List', 
       favicon: './public/favicon.ico',
+      template: './public/index.html',
     }),
   ],
 };
