@@ -1,11 +1,14 @@
 import React from 'react';
 import '../styles/OwnerInfo.css';
 
-const OwnerInfo = ({ ownerInfo }) => {
+const OwnerInfo = ({ login }) => {
+  const avatarUrl = `https://github.com/${login}.png`;
+  const htmlUrl = `https://github.com/${login}`;
+
   return (
     <div className="OwnerInfo">
-      <a href={ownerInfo.html_url}>
-        <img src={ownerInfo.avatar_url} alt={ownerInfo.login + ' avatar'} />
+      <a href={htmlUrl}>
+        <img src={avatarUrl} alt={login + ' avatar'} />
       </a>
     </div>
   );

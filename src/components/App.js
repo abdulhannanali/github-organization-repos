@@ -12,16 +12,17 @@ class App extends Component {
     loaded: false,
     loading: false,
     error: false,
-    ownerInfo: undefined,
+    login: '',
     reposList: [],
   }
 
   fetchRepoList = (searchTerm) => {
-    this.setState({ loading: true, loaded: false, reposList: [], ownerInfo: undefined, error: false });
+    this.setState({ 
+      loading: true, login: '', loaded: false, reposList: [], error: false, 
+    });
     return fetchOrganizationRepos(searchTerm, 10)
       .then(repos => {
         if (!repos) { return; }
-        const ownerInfo = repos[0].owner;
         const parsedRepos = repos.map(repo => {
           return {
             id: repo.id,
@@ -35,7 +36,9 @@ class App extends Component {
           };
         });
 
-        this.setState({ isLoaded: true, reposList: parsedRepos, ownerInfo, error: false });
+        this.setState({ 
+          isLoaded: true, reposList: parsedRepos, login: searchTerm, error: false, 
+        });
       })
       .catch(error => {
         this.setState({ loading: false, error: true });
@@ -54,16 +57,16 @@ class App extends Component {
    * Called on the `onBlur` event of `SearchInput`
    */
   onSearchBlur = (event) => {
-    const { searchTerm } = this.state;
+    const { searchTerm, login } = this.state;
     const { fetchRepoList } = this;
 
-    if (searchTerm) {
+    if (searchTerm && searchTerm !== login) {
       fetchRepoList(searchTerm);
     }
   }
 
   render() {
-    const { searchTerm, reposList, ownerInfo } = this.state;
+    const { searchTerm, reposList, login } = this.state;
     const { onSearchChange, onSearchBlur } = this;
 
     const SearchInput = (
@@ -88,7 +91,7 @@ class App extends Component {
           {/* A great place for the RepoCards to go */}
           <div className="row">
             <div className="col-sm-12 col-md-offset-2 col-md-8">
-              { ownerInfo && <OwnerInfo ownerInfo={ownerInfo} />}
+              { login && <OwnerInfo login={login} />}
               <RepoCards repos={reposList} />
             </div>
           </div>
