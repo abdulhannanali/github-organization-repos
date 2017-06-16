@@ -7,13 +7,16 @@ const DevIcon = ({ language, colored, wikiLink }) => {
   }
   
   const devIconClasses = getDevIcon(language, colored);
-  let iTag = (<i className={devIconClasses}></i>);
+  let iTag = (<i className={devIconClasses} aria-hidden={true}></i>);
   let devIconTag = iTag;
   
   if (wikiLink) {
     const wikiHref = `https://rosettacode.org/wiki/${language}`;
     devIconTag = (
-      <a href={wikiHref} style={{ textDecoration: 'none' }}>{iTag}</a>
+      <a 
+        href={wikiHref} 
+        style={{ textDecoration: 'none' }}
+        aria-label={'Wiki for language ' + language}>{iTag}</a>
     );
   }
 
