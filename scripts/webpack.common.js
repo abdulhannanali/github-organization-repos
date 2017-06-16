@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const resolvePath = require('./utils');
+const { resolvePath, useInProduction } = require('./utils');
 
 module.exports = {
   entry: {
@@ -72,7 +72,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Github Organization List', 
       favicon: './public/favicon.ico',
-      template: './public/index.html',
+      template: './public/index.ejs',
+      minify: useInProduction({
+        html5: true,
+        removeComments: true,
+        useShortDoctype: true,
+        caseSensitive: true,
+      }, undefined),
+      useCdn: useInProduction(true, false),
     }),
   ],
 };

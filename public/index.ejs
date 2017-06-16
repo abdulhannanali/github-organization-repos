@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= htmlWebpackPlugin.options.title || 'Github Organization List' %></title>
+    <meta charset="utf-8">
+    <meta name="description" content="Displays the repos for a github organization" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <h1>Sorry, dude, old browser, it's 2017, update yours! :) </h1>
+    </noscript>
+    
+    <% if (htmlWebpackPlugin.options.useCdn) { %>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js" integrity="sha256-ivdPAn5h6U67z6OPgwfiLM9ug6levxmYFqWNxNCV0YE=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js" integrity="sha256-UEqn5+tyzezD6A5HBMNTlc5mXkmt+ohTfCBPtXMaGb0=" crossorigin="anonymous"></script>
+    <% } %>
+    <%= htmlWebpackPlugin.files.webpackManifest %>
+  </body>
+</html>

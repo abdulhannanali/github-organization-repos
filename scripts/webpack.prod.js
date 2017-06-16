@@ -4,11 +4,19 @@ const Merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackChunkHash = require('webpack-chunk-hash');
+const SriPlugin = require('webpack-subresource-integrity');
 
 const CommonConfig = require('./webpack.common');
 
 module.exports = Merge(CommonConfig, {
   devtool: 'cheap-module-source-map',
+  output: {
+    crossOriginLoading: 'anonymous',
+  },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+  },
   module: {
     rules: [
       {
@@ -47,6 +55,10 @@ module.exports = Merge(CommonConfig, {
       filename: 'chunk-manifest.json',
       manifestVariable: 'webpackManifest',
       inlineManifest: true,
+    }),
+    new SriPlugin({
+      hashFuncNames: ['sha256', 'sha384'],
+      enabled: true,
     }),
   ],
 });

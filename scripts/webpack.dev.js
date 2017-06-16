@@ -20,8 +20,8 @@ module.exports = Merge(CommonConfig, {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-      }
-    ]
+      },
+    ],
   },
 
   output: {
