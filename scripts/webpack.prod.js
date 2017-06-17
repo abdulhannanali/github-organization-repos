@@ -50,14 +50,14 @@ module.exports = Merge(CommonConfig, {
       },
       comments: false,
     }),
-    new WebpackChunkHash({ algorithm: 'sha512WithRSAEncryption' }),
+    new WebpackChunkHash({ algorithm: 'sha256' }),
     new ChunkManifestPlugin({
       filename: 'chunk-manifest.json',
       manifestVariable: 'webpackManifest',
       inlineManifest: true,
     }),
     new SriPlugin({
-      hashFuncNames: ['sha256', 'sha384'],
+      hashFuncNames: ['sha256'],
       enabled: true,
     }),
   ],
