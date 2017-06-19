@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackChunkHash = require('webpack-chunk-hash');
 const SriPlugin = require('webpack-subresource-integrity');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const CommonConfig = require('./webpack.common');
 
@@ -12,6 +13,7 @@ module.exports = Merge(CommonConfig, {
   devtool: 'cheap-module-source-map',
   output: {
     crossOriginLoading: 'anonymous',
+    publicPath: '/github-organization-repos/',
   },
   externals: {
     'react': 'React',
@@ -38,7 +40,10 @@ module.exports = Merge(CommonConfig, {
       minimize: true,
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production'),
+        'BASE_NAME': JSON.stringify('/github-organization-repos'),
+      },
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -58,7 +63,24 @@ module.exports = Merge(CommonConfig, {
     }),
     new SriPlugin({
       hashFuncNames: ['sha256'],
-      enabled: true,
+      enabled: false,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'chunk',
+      minChunks: 2,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      defaultSizes: 'parsed',
+      reportFilename: 'report.html',
+      logLevel: 'info',
     }),
   ],
+
+  // Having Performant build is important and this allows us to check if our build is
+  // performant or not
+  performance: {
+    hints: 'error',
+    assetFilter: (aF) => aF.endsWith('.js'),
+  },
 });

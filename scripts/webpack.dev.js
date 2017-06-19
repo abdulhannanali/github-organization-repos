@@ -5,7 +5,7 @@ const CommonConfig = require('./webpack.common');
 const Merge = require('webpack-merge');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
-const resolvePath = require('./utils');
+const { resolvePath } = require('./utils');
 
 module.exports = Merge(CommonConfig, {
   devServer: {
@@ -13,8 +13,8 @@ module.exports = Merge(CommonConfig, {
     port: 9000,
     contentBase: resolvePath('dist'),
     hot: true,
+    historyApiFallback: true,
   },
-
   module: {
     rules: [
       {
@@ -26,6 +26,7 @@ module.exports = Merge(CommonConfig, {
 
   output: {
     // Hash is required for JavaScript files using Hot Module Replacement
+    publicPath: '/',
     filename: '[name].[hash].js',
     sourceMapFilename: '[name].[hash].map',
   },

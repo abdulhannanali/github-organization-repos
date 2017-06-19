@@ -33,15 +33,6 @@ module.exports = {
         exclude: /(node_modules|bower_components|examples)/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: [
-              'react',
-              ['env', { 
-                modules: false, 
-              }],
-            ],
-            plugins: ['transform-class-properties'],
-          },
         },
       },
       {
