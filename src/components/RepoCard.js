@@ -1,5 +1,6 @@
 import React from 'react';
 import DevIcon from './DevIcon';
+import { Link } from 'react-router-dom';
 
 import '../styles/RepoCard.css';
 
@@ -9,7 +10,7 @@ const RepoCard = ({ repo }) => {
       <div className="row">
         <div className="col-sm-10">
           <h2>
-            <a href={repo.html_url}>{repo.name}</a>
+            <Link to={'repo/' + repo.full_name}>{repo.name}</Link>
           </h2>
           <span className="RepoCard--website">
             <a href={repo.homepage}>

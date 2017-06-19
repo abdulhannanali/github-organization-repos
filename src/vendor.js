@@ -1,7 +1,8 @@
-import 'lodash';
+import 'babel-polyfill';
 import 'react';
 import 'react-dom';
-import 'url';
+import 'react-router-dom';
+import 'axios';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';

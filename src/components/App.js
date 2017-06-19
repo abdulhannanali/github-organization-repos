@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import Input from './Input';
 import RepoCards from './RepoCards';
 import OwnerInfo from './OwnerInfo';
+import Loader from './Loader';
 
 import { fetchOrganizationRepos } from '../helpers/github';
 
@@ -37,7 +37,7 @@ class App extends Component {
         });
 
         this.setState({ 
-          isLoaded: true, reposList: parsedRepos, login: searchTerm, error: false, 
+          loaded: true, loading: false, reposList: parsedRepos, login: searchTerm, error: false, 
         });
       })
       .catch(error => {
@@ -53,6 +53,11 @@ class App extends Component {
     this.setState({ searchTerm: trimmedValue });
   }
 
+  setSearchQuery = () => {
+    const {} = this.props;
+
+  }
+
   /**
    * Called on the `onBlur` event of `SearchInput`
    */
@@ -66,8 +71,9 @@ class App extends Component {
   }
 
   render() {
-    const { searchTerm, reposList, login } = this.state;
+    const { searchTerm, reposList, login, loaded, loading } = this.state;
     const { onSearchChange, onSearchBlur } = this;
+
 
     const SearchInput = (
       <Input 
@@ -82,17 +88,18 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-          <Header />
           <div className="row">
-            <div className="col-sm-12 col-md-offset-3 col-md-6">
+            <div className="col-sm-12 col-md-offset-3 col-md-6"> 
+              <h2 style={{ textAlign: 'center' }}>Organization name</h2>
               {SearchInput}
             </div>
           </div>
           {/* A great place for the RepoCards to go */}
           <div className="row">
             <div className="col-sm-12 col-md-offset-2 col-md-8">
+              { loading && <Loader />}
               { login && <OwnerInfo login={login} />}
-              <RepoCards repos={reposList} />
+              { loaded && <RepoCards repos={reposList} /> }
             </div>
           </div>
         </div>

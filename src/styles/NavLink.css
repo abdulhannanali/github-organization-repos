@@ -1,0 +1,12 @@
+.NavLink {
+  text-align: center;
+  margin: 20px;
+  box-shadow: 4px 4px 4px 4px #aaa;
+}
+
+.NavLink-item {
+  margin: 10px;
+  font-family: monospace;
+  font-size: 30px;
+  font-weight: bolder;
+}
