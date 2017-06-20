@@ -53,11 +53,6 @@ class App extends Component {
     this.setState({ searchTerm: trimmedValue });
   }
 
-  setSearchQuery = () => {
-    const {} = this.props;
-
-  }
-
   /**
    * Called on the `onBlur` event of `SearchInput`
    */
