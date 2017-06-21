@@ -4,8 +4,7 @@ import 'react-dom';
 import 'react-router-dom';
 import 'axios';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import './styles/custom-bootstrap/bootstrap.min.css';
 import 'devicon';
 
 import './fonts';
