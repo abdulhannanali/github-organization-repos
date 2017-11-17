@@ -1,5 +1,7 @@
 # Github Organization List
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/abdulhannanali/github-organization-repos.svg)](https://greenkeeper.io/)
+
 Github organization list does what it says it does, simple! You enter an organization
 name into the input element and it shows you the list of repositories from that organization.
 
